@@ -15,9 +15,10 @@
   --man:#39FF14;--man2:#88FF44;
   --bee:#BB44FF;--bee2:#DD88FF;
   --wrm:#CCFF00;--wrm2:#88AA00;
+  --acid:#67f8ff;--spray:#ff5cd4;--ink:#161221;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Space Mono',monospace;font-size:13px;line-height:1.7;overflow-x:hidden;cursor:crosshair}
+body{background:radial-gradient(circle at 20% 10%,#17121f 0,#08070f 30%,#050505 70%);color:var(--text);font-family:'Space Mono',monospace;font-size:13px;line-height:1.7;overflow-x:hidden;cursor:crosshair}
 ::selection{background:var(--p);color:#000}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:#000}
@@ -53,6 +54,34 @@ body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes hue-rot{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+
+/* Y2K GRAFFITI LAYER */
+.skip-link{position:fixed;left:-999px;top:8px;z-index:12000;background:#fff;color:#000;padding:.45rem .8rem;font-family:'Press Start 2P',monospace;font-size:.42rem}
+.skip-link:focus{left:8px}
+.spray-layer{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.spray{position:absolute;border-radius:50%;filter:blur(1px);mix-blend-mode:screen;opacity:.14;animation:float 7s ease-in-out infinite}
+.spray.s1{width:220px;height:220px;background:radial-gradient(circle,var(--spray),transparent 70%);top:8%;left:-40px}
+.spray.s2{width:300px;height:300px;background:radial-gradient(circle,var(--acid),transparent 75%);bottom:5%;right:-90px;animation-delay:1s}
+.spray.s3{width:170px;height:170px;background:radial-gradient(circle,var(--g),transparent 72%);top:42%;right:18%;animation-delay:2s}
+.graffiti-marquee{position:relative;z-index:3;border:1px solid #3b304f;background:linear-gradient(90deg,rgba(103,248,255,.08),rgba(255,45,107,.08));overflow:hidden;margin-top:1.2rem;max-width:860px}
+.graffiti-marquee .track{display:flex;gap:2rem;white-space:nowrap;padding:.55rem 0;animation:marquee 16s linear infinite}
+.graffiti-marquee span{font-family:'Press Start 2P',monospace;font-size:.45rem;letter-spacing:2px;color:var(--acid);text-shadow:0 0 8px rgba(103,248,255,.5)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero-stickers{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;z-index:3}
+.sticker{font-family:'Bangers',cursive;font-size:.95rem;letter-spacing:1px;padding:.15rem .7rem;border:2px solid;background:var(--ink);box-shadow:3px 3px 0 rgba(0,0,0,.45);transform:rotate(-3deg);text-transform:uppercase}
+.sticker:nth-child(2){transform:rotate(2deg)}
+.sticker:nth-child(3){transform:rotate(-1deg)}
+.sticker.pink{color:var(--p);border-color:var(--p)}
+.sticker.cyan{color:var(--acid);border-color:var(--acid)}
+.sticker.green{color:var(--g);border-color:var(--g)}
+.hero-cta{margin-top:1.4rem;display:flex;gap:.7rem;z-index:3;flex-wrap:wrap;justify-content:center}
+.hero-cta a{text-decoration:none;font-family:'Press Start 2P',monospace;font-size:.45rem;padding:.7rem .9rem;border:1px solid #353535;color:var(--text);background:rgba(255,255,255,.02);letter-spacing:1px;text-transform:uppercase;transition:all .25s}
+.hero-cta a:hover{transform:translateY(-2px);border-color:var(--acid);box-shadow:0 0 18px rgba(103,248,255,.18)}
+.hero{isolation:isolate}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(255,45,107,.08),transparent 45%),radial-gradient(circle at 80% 70%,rgba(103,248,255,.08),transparent 40%);z-index:1}
+section{position:relative}
+section::before{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.03);pointer-events:none}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,5,.95);backdrop-filter:blur(8px);border-bottom:1px solid #1a1a1a;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:50px;transition:transform .3s}
@@ -261,9 +290,34 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
 .cycle-phase .cicon{font-size:1.5rem;margin-bottom:.3rem}
 .cycle-phase .cname{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase}
 .cycle-phase .cronda{font-family:'Press Start 2P',monospace;font-size:.3rem;color:var(--dim);margin-top:.2rem}
+
+/* INTERACTIVE RULE LAB */
+.lab-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem;margin-top:1rem}
+@media(max-width:900px){.lab-grid{grid-template-columns:1fr}}
+.lab-controls{background:#090909;border:1px solid #1f1f1f;padding:1rem}
+.lab-controls h5{font-family:'Press Start 2P',monospace;font-size:.44rem;letter-spacing:1px;color:var(--acid);margin-bottom:.8rem}
+.ctrl{display:grid;grid-template-columns:1fr auto;gap:.8rem;align-items:center;margin:.45rem 0}
+.ctrl label{font-size:.72rem;color:var(--dim)}
+.ctrl output,.ctrl span{font-family:'Oswald',sans-serif;font-size:.85rem;color:var(--text)}
+.ctrl input[type='range']{width:100%}
+.ctrl select,.ctrl input[type='number']{background:#121212;border:1px solid #2c2c2c;color:var(--text);padding:.25rem .35rem}
+.ctrl .tog{display:flex;align-items:center;gap:.45rem;justify-self:end}
+.lab-note{font-size:.68rem;color:var(--muted);margin-top:.7rem}
+.lab-state{margin-top:.85rem;padding:.65rem .8rem;border:1px solid #2a2a2a;background:rgba(255,255,255,.02);font-size:.72rem}
+.lab-state.ok{border-color:rgba(57,255,20,.35);color:var(--g)}
+.lab-state.bad{border-color:rgba(255,45,107,.35);color:var(--p)}
+.real-svg{background:#070707;border:1px solid #1a1a1a;padding:.6rem}
+.real-svg text{font-family:'Oswald',sans-serif}
+
 </style>
 </head>
 <body>
+<a class="skip-link" href="#lore">Saltar al contenido</a>
+<div class="spray-layer" aria-hidden="true">
+  <span class="spray s1"></span>
+  <span class="spray s2"></span>
+  <span class="spray s3"></span>
+</div>
 
 <nav>
   <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">BUGZ</div>
@@ -287,6 +341,22 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
     <span>45-75 MIN</span>
     <span>4 BANDAS</span>
     <span>32 BICHOS</span>
+  </div>
+  <div class="hero-stickers">
+    <span class="sticker pink">No Gods No Fogger</span>
+    <span class="sticker cyan">Neon Alley Meta</span>
+    <span class="sticker green">Mandíbulas First</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#rules">Entrar al manual</a>
+    <a href="#factions">Ver bandas</a>
+  </div>
+  <div class="graffiti-marquee" aria-hidden="true">
+    <div class="track">
+      <span>Y2K · PIXEL RUIDO · GRAFFITI QUITINOSO · CALLEJÓN TÓXICO ·</span>
+      <span>Y2K · PIXEL RUIDO · GRAFFITI QUITINOSO · CALLEJÓN TÓXICO ·</span>
+      <span>Y2K · PIXEL RUIDO · GRAFFITI QUITINOSO · CALLEJÓN TÓXICO ·</span>
+    </div>
   </div>
   <div class="hero-scroll" style="font-family:'Press Start 2P',monospace;font-size:.35rem;letter-spacing:3px">▼ SCROLL ▼</div>
 </div>
@@ -598,6 +668,63 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
       <div class="cycle-phase" style="border-color:rgba(255,255,255,.1)"><div class="cicon">◈</div><div class="cname" style="color:#888">Rocío</div><div class="cronda">R4 · R8 · R12...</div><p style="font-size:.6rem;color:var(--dim);margin-top:.3rem">Neutral<br>Nadie bonus</p></div>
     </div>
     <div class="callout">Las Hormigas dominan Sol. Los Escarabajos y Gusanos explotan Luna. Las Mantis tienen la distribución más equilibrada. Las rondas neutras son de posicionamiento puro.</div>
+  </div>
+
+
+  <!-- REGLA REAL INTERACTIVA -->
+  <div class="rule-block" id="rule-lab">
+    <h4>Laboratorio táctico (interactivo)</h4>
+    <p>Este panel traduce reglas reales de BUGZ: coste de terreno para mover, alcance de escupitajo y bloqueo por Enganche.</p>
+    <div class="lab-grid">
+      <div class="lab-controls">
+        <h5>Movimiento</h5>
+        <div class="ctrl"><label for="patRange">Patas disponibles (PAT)</label><output id="patOut">3</output></div>
+        <div class="ctrl"><input id="patRange" type="range" min="1" max="6" value="3"><span></span></div>
+        <div class="ctrl"><label for="path1">Hex 1 coste</label><select id="path1"><option value="1">1</option><option value="2">2</option><option value="99">Bloqueado</option></select></div>
+        <div class="ctrl"><label for="path2">Hex 2 coste</label><select id="path2"><option value="1">1</option><option value="2" selected>2</option><option value="99">Bloqueado</option></select></div>
+        <div class="ctrl"><label for="path3">Hex 3 coste</label><select id="path3"><option value="1" selected>1</option><option value="2">2</option><option value="99">Bloqueado</option></select></div>
+
+        <h5 style="margin-top:1rem">Escupitajo + Enganche</h5>
+        <div class="ctrl"><label for="rangeDist">Distancia al objetivo</label><output id="rangeOut">3</output></div>
+        <div class="ctrl"><input id="rangeDist" type="range" min="1" max="5" value="3"><span></span></div>
+        <div class="ctrl"><label for="adjEnemy">Hay enemigo adyacente</label><div class="tog"><input id="adjEnemy" type="checkbox"></div></div>
+        <div class="ctrl"><label for="isSentinel">Unidad con Antena Larga (Centinela)</label><div class="tog"><input id="isSentinel" type="checkbox"></div></div>
+
+        <div id="labState" class="lab-state">Calculando estado táctico...</div>
+        <p class="lab-note">Regla aplicada: sin Antena Larga, estar adyacente a enemigo bloquea Escupitajo incluso si el rango llega.</p>
+      </div>
+      <div class="real-svg">
+        <svg id="labSvg" viewBox="0 0 360 280" width="100%" role="img" aria-label="Simulador visual de movimiento y ataque">
+          <rect x="0" y="0" width="360" height="280" fill="#070707"/>
+          <text x="16" y="20" fill="#777" font-size="10" letter-spacing="2">MOVIMIENTO REAL (coste acumulado)</text>
+
+          <polygon id="hx0" points="34,92 60,76 86,92 86,120 60,136 34,120" fill="#121212" stroke="#555"/>
+          <text x="60" y="111" fill="#e0ddd0" font-size="12" text-anchor="middle">🐜</text>
+
+          <polygon id="hx1" points="94,92 120,76 146,92 146,120 120,136 94,120" fill="#101010" stroke="#333"/>
+          <text id="hx1t" x="120" y="111" fill="#777" font-size="10" text-anchor="middle">1</text>
+
+          <polygon id="hx2" points="154,92 180,76 206,92 206,120 180,136 154,120" fill="#101010" stroke="#333"/>
+          <text id="hx2t" x="180" y="111" fill="#777" font-size="10" text-anchor="middle">2</text>
+
+          <polygon id="hx3" points="214,92 240,76 266,92 266,120 240,136 214,120" fill="#101010" stroke="#333"/>
+          <text id="hx3t" x="240" y="111" fill="#777" font-size="10" text-anchor="middle">1</text>
+
+          <line id="moveL1" x1="87" y1="106" x2="94" y2="106" stroke="#39FF14" stroke-width="2"/>
+          <line id="moveL2" x1="147" y1="106" x2="154" y2="106" stroke="#39FF14" stroke-width="2"/>
+          <line id="moveL3" x1="207" y1="106" x2="214" y2="106" stroke="#39FF14" stroke-width="2"/>
+          <text id="moveText" x="16" y="160" fill="#39FF14" font-size="11">Ruta legal</text>
+
+          <text x="16" y="192" fill="#777" font-size="10" letter-spacing="2">ESCUPITAJO REAL (bloqueo por Enganche)</text>
+          <circle cx="76" cy="236" r="20" fill="rgba(57,255,20,.08)" stroke="#39FF14"/>
+          <text x="76" y="242" fill="#39FF14" font-size="14" text-anchor="middle">🐜</text>
+          <circle id="target" cx="256" cy="236" r="18" fill="rgba(255,45,107,.08)" stroke="#FF2D6B"/>
+          <text x="256" y="242" fill="#FF2D6B" font-size="14" text-anchor="middle">🪱</text>
+          <line id="shotLine" x1="98" y1="236" x2="238" y2="236" stroke="#39FF14" stroke-width="2" stroke-dasharray="5"/>
+          <text id="shotText" x="16" y="266" fill="#39FF14" font-size="11">Disparo válido</text>
+        </svg>
+      </div>
+    </div>
   </div>
 
   <!-- MUDA -->
@@ -1012,6 +1139,111 @@ for(let i=0;i<20;i++){
 // ═══ SCROLL REVEAL ═══
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+
+
+
+// ═══ RULE LAB (REALIDAD JUGABLE) ═══
+const patRange=document.getElementById('patRange');
+const patOut=document.getElementById('patOut');
+const rangeDist=document.getElementById('rangeDist');
+const rangeOut=document.getElementById('rangeOut');
+const adjEnemy=document.getElementById('adjEnemy');
+const isSentinel=document.getElementById('isSentinel');
+const pathIds=['path1','path2','path3'];
+const hxIds=['hx1','hx2','hx3'];
+const lineIds=['moveL1','moveL2','moveL3'];
+
+function updateRuleLab(){
+  if(!patRange) return;
+  const pat=Number(patRange.value);
+  const dist=Number(rangeDist.value);
+  patOut.textContent=String(pat);
+  rangeOut.textContent=String(dist);
+
+  let spent=0;
+  let blocked=false;
+  pathIds.forEach((id,idx)=>{
+    const cost=Number(document.getElementById(id).value);
+    const hx=document.getElementById(hxIds[idx]);
+    const hxt=document.getElementById(hxIds[idx]+'t');
+    const line=document.getElementById(lineIds[idx]);
+    hxt.textContent=cost===99?'X':String(cost);
+
+    if(blocked || cost===99){
+      blocked=true;
+      hx.setAttribute('fill','rgba(255,45,107,.08)');
+      hx.setAttribute('stroke','#FF2D6B');
+      line.setAttribute('stroke','#FF2D6B');
+      return;
+    }
+
+    spent+=cost;
+    const legal=spent<=pat;
+    hx.setAttribute('fill', legal ? 'rgba(57,255,20,.07)' : 'rgba(255,45,107,.08)');
+    hx.setAttribute('stroke', legal ? '#39FF14' : '#FF2D6B');
+    line.setAttribute('stroke', legal ? '#39FF14' : '#FF2D6B');
+  });
+
+  const moveLegal=!blocked && spent<=pat;
+  const moveText=document.getElementById('moveText');
+  moveText.textContent=moveLegal?`Ruta legal: coste ${spent}/${pat}`:`Ruta ilegal: coste ${spent}/${pat}${blocked?' + hex bloqueado':''}`;
+  moveText.setAttribute('fill',moveLegal?'#39FF14':'#FF2D6B');
+
+  // Alcance jugable: base 3, bloqueado por adyacencia salvo Centinela
+  const canRangeByDist=dist<=3;
+  const blockedByEngage=adjEnemy.checked && !isSentinel.checked;
+  const shotOK=canRangeByDist && !blockedByEngage;
+  const x2=98+Math.min(dist,5)*46;
+  const line=document.getElementById('shotLine');
+  line.setAttribute('x2',String(x2));
+  const target=document.getElementById('target');
+  target.setAttribute('cx',String(x2+18));
+
+  const shotText=document.getElementById('shotText');
+  if(shotOK){
+    shotText.textContent='Disparo válido por reglas actuales';
+    shotText.setAttribute('fill','#39FF14');
+    line.setAttribute('stroke','#39FF14');
+  }else{
+    const why=blockedByEngage?'bloqueado por Enganche':'fuera de alcance (3)';
+    shotText.textContent=`Disparo ilegal: ${why}`;
+    shotText.setAttribute('fill','#FF2D6B');
+    line.setAttribute('stroke','#FF2D6B');
+  }
+
+  const labState=document.getElementById('labState');
+  labState.className='lab-state '+(moveLegal && shotOK ? 'ok':'bad');
+  labState.textContent=`Movimiento: ${moveLegal?'legal':'ilegal'} · Escupitajo: ${shotOK?'legal':'ilegal'}${adjEnemy.checked ? ' · enemigo adyacente detectado' : ''}${isSentinel.checked ? ' · excepción Centinela activa' : ''}`;
+}
+
+['input','change'].forEach(evt=>{
+  [patRange,rangeDist,adjEnemy,isSentinel,...pathIds.map(id=>document.getElementById(id))].forEach(el=>el&&el.addEventListener(evt,updateRuleLab));
+});
+updateRuleLab();
+
+// ═══ CURSOR SPARKS ═══
+const sparks=[];
+window.addEventListener('pointermove',(e)=>{
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const s=document.createElement('span');
+  s.style.position='fixed';
+  s.style.left=e.clientX+'px';
+  s.style.top=e.clientY+'px';
+  s.style.width='5px';
+  s.style.height='5px';
+  s.style.borderRadius='50%';
+  s.style.background=Math.random()>.5?'var(--spray)':'var(--acid)';
+  s.style.boxShadow='0 0 10px currentColor';
+  s.style.pointerEvents='none';
+  s.style.zIndex='10001';
+  s.style.opacity='.8';
+  s.style.transform='translate(-50%,-50%)';
+  document.body.appendChild(s);
+  sparks.push(s);
+  setTimeout(()=>{s.style.transition='all .6s';s.style.opacity='0';s.style.transform='translate(-50%,-50%) scale(0)';},20);
+  setTimeout(()=>s.remove(),700);
+  if(sparks.length>30){sparks.shift()?.remove();}
+});
 
 // ═══ NAV HIDE ═══
 let ls=0;
