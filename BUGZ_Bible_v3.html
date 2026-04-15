@@ -299,6 +299,27 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
   nav .links a{font-size:.35rem;padding:3px 5px}
 }
 
+
+
+/* SVG VISUAL SYSTEM */
+:root{--svg-stroke:#3a3f48;--svg-text:#d6d6d6;--svg-meta:#7f8591}
+.rule-block svg{shape-rendering:geometricPrecision}
+.rule-block svg text{font-family:'Oswald',sans-serif;fill:var(--svg-text);letter-spacing:.6px}
+.rule-block svg [stroke]{stroke-linecap:round;stroke-linejoin:round}
+.rule-block svg .svg-meta{fill:var(--svg-meta);font-size:7px;letter-spacing:1.5px}
+.rule-block svg .svg-strong{font-weight:700;letter-spacing:1.2px}
+.icon-legend{display:flex;flex-wrap:wrap;gap:.6rem;margin:1rem 0 1.4rem}
+.icon-legend .ihex{display:flex;align-items:center;gap:.5rem;padding:.35rem .55rem;border:1px solid #28303a;background:#0b0d12;font-size:.68rem;color:#cfd6e0}
+.icon-legend .ico{width:20px;height:20px;display:inline-flex;align-items:center;justify-content:center;border:1px solid #2f3945;background:#111823;clip-path:polygon(50% 0%,100% 25%,100% 75%,50% 100%,0 75%,0 25%);font-size:.66rem}
+.icon-legend .pat .ico{border-color:rgba(57,255,20,.6);color:var(--g)}
+.icon-legend .m .ico{border-color:rgba(255,45,107,.6);color:var(--p)}
+.icon-legend .e .ico{border-color:rgba(103,248,255,.65);color:var(--acid)}
+.icon-legend .eng .ico{border-color:rgba(255,200,0,.55);color:#ffd95b}
+.bump-val{animation:bumpVal .32s ease}
+.flash-line{animation:flashLine .38s ease}
+@keyframes bumpVal{0%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.08);filter:brightness(1.45)}100%{transform:scale(1);filter:brightness(1)}}
+@keyframes flashLine{0%{opacity:.55}50%{opacity:1}100%{opacity:.72}}
+
 /* RULES DIAGRAMS */
 .rule-block{background:var(--surface);border:1px solid #1a1a1a;padding:2rem;margin:2rem 0;position:relative;overflow:hidden}
 .rule-block::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--g),var(--c))}
@@ -450,6 +471,12 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
 <div class="reveal">
   <div class="section-label">02 · Reglas visuales</div>
   <h2>Cómo se <span class="accent">juega</span></h2>
+  <div class="icon-legend" aria-label="Leyenda visual unificada">
+    <div class="ihex pat"><span class="ico">🦶</span><span>PAT = movimiento</span></div>
+    <div class="ihex m"><span class="ico">🦷</span><span>M = melee</span></div>
+    <div class="ihex e"><span class="ico">💧</span><span>E = escupitajo</span></div>
+    <div class="ihex eng"><span class="ico">⛓</span><span>Enganche bloquea Patas</span></div>
+  </div>
 
   <!-- ROUND STRUCTURE -->
   <div class="rule-block">
@@ -750,7 +777,7 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
       <div class="real-svg">
         <svg id="labSvg" viewBox="0 0 360 280" width="100%" role="img" aria-label="Simulador visual de movimiento y ataque">
           <rect x="0" y="0" width="360" height="280" fill="#070707"/>
-          <text x="16" y="20" fill="#777" font-size="10" letter-spacing="2">MOVIMIENTO REAL (coste acumulado)</text>
+          <text x="16" y="20" fill="#777" font-size="10" letter-spacing="2"><tspan class="svg-meta">MOVIMIENTO REAL (COSTE ACUMULADO)</tspan></text>
 
           <polygon id="hx0" points="34,92 60,76 86,92 86,120 60,136 34,120" fill="#121212" stroke="#555"/>
           <text x="60" y="111" fill="#e0ddd0" font-size="12" text-anchor="middle">🐜</text>
@@ -769,7 +796,7 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
           <line id="moveL3" x1="207" y1="106" x2="214" y2="106" stroke="#39FF14" stroke-width="2"/>
           <text id="moveText" x="16" y="160" fill="#39FF14" font-size="11">Ruta legal</text>
 
-          <text x="16" y="192" fill="#777" font-size="10" letter-spacing="2">ESCUPITAJO REAL (bloqueo por Enganche)</text>
+          <text x="16" y="192" fill="#777" font-size="10" letter-spacing="2"><tspan class="svg-meta">ESCUPITAJO REAL (BLOQUEO POR ENGANCHE)</tspan></text>
           <circle cx="76" cy="236" r="20" fill="rgba(57,255,20,.08)" stroke="#39FF14"/>
           <text x="76" y="242" fill="#39FF14" font-size="14" text-anchor="middle">🐜</text>
           <circle id="target" cx="256" cy="236" r="18" fill="rgba(255,45,107,.08)" stroke="#FF2D6B"/>
@@ -1191,6 +1218,14 @@ worms: {
   ]
 }};
 
+
+function pulse(el,cls='bump-val'){
+  if(!el) return;
+  el.classList.remove(cls);
+  void el.offsetWidth;
+  el.classList.add(cls);
+}
+
 // ═══ RENDER CARDS ═══
 function renderCard(u,f,t) {
   const sts = [];
@@ -1236,6 +1271,7 @@ function updatePreview(card){
   document.getElementById('pvGlowStop').setAttribute('stop-color',tone);
   document.getElementById('pvRing').setAttribute('stroke',tone);
   document.getElementById('pvCost').style.color=tone;
+  ['pvEmoji','pvCycle','pvCost','pvName'].forEach(id=>pulse(document.getElementById(id)));
 }
 
 document.addEventListener('click',e=>{
@@ -1311,6 +1347,7 @@ function updateRuleLab(){
       hx.setAttribute('fill','rgba(255,45,107,.08)');
       hx.setAttribute('stroke','#FF2D6B');
       line.setAttribute('stroke','#FF2D6B');
+    pulse(line,'flash-line');
       return;
     }
 
@@ -1325,6 +1362,7 @@ function updateRuleLab(){
   const moveText=document.getElementById('moveText');
   moveText.textContent=moveLegal?`Ruta legal: coste ${spent}/${pat}`:`Ruta ilegal: coste ${spent}/${pat}${blocked?' + hex bloqueado':''}`;
   moveText.setAttribute('fill',moveLegal?'#39FF14':'#FF2D6B');
+  pulse(moveText);
 
   // Alcance jugable: base 3, bloqueado por adyacencia salvo Centinela
   const canRangeByDist=dist<=3;
@@ -1341,6 +1379,7 @@ function updateRuleLab(){
     shotText.textContent='Disparo válido por reglas actuales';
     shotText.setAttribute('fill','#39FF14');
     line.setAttribute('stroke','#39FF14');
+    pulse(line,'flash-line');
   }else{
     const why=blockedByEngage?'bloqueado por Enganche':'fuera de alcance (3)';
     shotText.textContent=`Disparo ilegal: ${why}`;
@@ -1351,6 +1390,7 @@ function updateRuleLab(){
   const labState=document.getElementById('labState');
   labState.className='lab-state '+(moveLegal && shotOK ? 'ok':'bad');
   labState.textContent=`Movimiento: ${moveLegal?'legal':'ilegal'} · Escupitajo: ${shotOK?'legal':'ilegal'}${adjEnemy.checked ? ' · enemigo adyacente detectado' : ''}${isSentinel.checked ? ' · excepción Centinela activa' : ''}`;
+  pulse(labState);
 }
 
 ['input','change'].forEach(evt=>{
