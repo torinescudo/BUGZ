@@ -15,9 +15,10 @@
   --man:#39FF14;--man2:#88FF44;
   --bee:#BB44FF;--bee2:#DD88FF;
   --wrm:#CCFF00;--wrm2:#88AA00;
+  --acid:#67f8ff;--spray:#ff5cd4;--ink:#161221;
 }
 html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:'Space Mono',monospace;font-size:13px;line-height:1.7;overflow-x:hidden;cursor:crosshair}
+body{background:radial-gradient(circle at 20% 10%,#17121f 0,#08070f 30%,#050505 70%);color:var(--text);font-family:'Space Mono',monospace;font-size:13px;line-height:1.7;overflow-x:hidden;cursor:crosshair}
 ::selection{background:var(--p);color:#000}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:#000}
@@ -53,6 +54,53 @@ body::after{content:'';position:fixed;inset:0;background:url("data:image/svg+xml
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 @keyframes hue-rot{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(360deg)}}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+
+/* Y2K GRAFFITI LAYER */
+.skip-link{position:fixed;left:-999px;top:8px;z-index:12000;background:#fff;color:#000;padding:.45rem .8rem;font-family:'Press Start 2P',monospace;font-size:.42rem}
+.skip-link:focus{left:8px}
+.spray-layer{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+.spray{position:absolute;border-radius:50%;filter:blur(1px);mix-blend-mode:screen;opacity:.14;animation:float 7s ease-in-out infinite}
+.spray.s1{width:220px;height:220px;background:radial-gradient(circle,var(--spray),transparent 70%);top:8%;left:-40px}
+.spray.s2{width:300px;height:300px;background:radial-gradient(circle,var(--acid),transparent 75%);bottom:5%;right:-90px;animation-delay:1s}
+.spray.s3{width:170px;height:170px;background:radial-gradient(circle,var(--g),transparent 72%);top:42%;right:18%;animation-delay:2s}
+.graffiti-marquee{position:relative;z-index:3;border:1px solid #3b304f;background:linear-gradient(90deg,rgba(103,248,255,.08),rgba(255,45,107,.08));overflow:hidden;margin-top:1.2rem;max-width:860px}
+.graffiti-marquee .track{display:flex;gap:2rem;white-space:nowrap;padding:.55rem 0;animation:marquee 16s linear infinite}
+.graffiti-marquee span{font-family:'Press Start 2P',monospace;font-size:.45rem;letter-spacing:2px;color:var(--acid);text-shadow:0 0 8px rgba(103,248,255,.5)}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero-stickers{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center;margin-top:1.5rem;z-index:3}
+.sticker{font-family:'Bangers',cursive;font-size:.95rem;letter-spacing:1px;padding:.15rem .7rem;border:2px solid;background:var(--ink);box-shadow:3px 3px 0 rgba(0,0,0,.45);transform:rotate(-3deg);text-transform:uppercase}
+.sticker:nth-child(2){transform:rotate(2deg)}
+.sticker:nth-child(3){transform:rotate(-1deg)}
+.sticker.pink{color:var(--p);border-color:var(--p)}
+.sticker.cyan{color:var(--acid);border-color:var(--acid)}
+.sticker.green{color:var(--g);border-color:var(--g)}
+.hero-cta{margin-top:1.4rem;display:flex;gap:.7rem;z-index:3;flex-wrap:wrap;justify-content:center}
+.hero-cta a{text-decoration:none;font-family:'Press Start 2P',monospace;font-size:.45rem;padding:.7rem .9rem;border:1px solid #353535;color:var(--text);background:rgba(255,255,255,.02);letter-spacing:1px;text-transform:uppercase;transition:all .25s}
+.hero-cta a:hover{transform:translateY(-2px);border-color:var(--acid);box-shadow:0 0 18px rgba(103,248,255,.18)}
+.hero{isolation:isolate}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 20%,rgba(255,45,107,.08),transparent 45%),radial-gradient(circle at 80% 70%,rgba(103,248,255,.08),transparent 40%);z-index:1}
+section{position:relative}
+section::before{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.03);pointer-events:none}
+
+
+/* BUG DOMINATION FUN */
+.dom-panel{z-index:3;margin-top:1.1rem;padding:.75rem .9rem;border:1px solid #2b3d2d;background:linear-gradient(90deg,rgba(57,255,20,.08),rgba(0,0,0,.2));display:flex;flex-wrap:wrap;gap:.6rem;align-items:center;justify-content:center;max-width:920px}
+.dom-pill{font-family:'Press Start 2P',monospace;font-size:.43rem;padding:.45rem .55rem;border:1px solid #29422a;color:#9dff89;background:rgba(0,0,0,.35)}
+.swarm-btn{font-family:'Bangers',cursive;font-size:1rem;letter-spacing:1px;padding:.2rem .7rem;border:1px solid var(--g);background:#0d160a;color:var(--g);cursor:pointer;transition:all .25s}
+.swarm-btn:hover{transform:translateY(-1px);box-shadow:0 0 14px rgba(57,255,20,.25)}
+.infest-meter{position:fixed;right:1rem;bottom:1rem;z-index:12001;width:230px;border:1px solid #2f4a30;background:rgba(5,12,5,.85);backdrop-filter:blur(4px);padding:.55rem}
+.infest-meter .ttl{font-family:'Press Start 2P',monospace;font-size:.38rem;color:#a6ff9c;letter-spacing:1px}
+.infest-meter .bar{height:9px;border:1px solid #2f4a30;background:#090f09;margin:.45rem 0;overflow:hidden}
+.infest-meter .fill{height:100%;width:0%;background:linear-gradient(90deg,#39FF14,#94ff39);box-shadow:0 0 10px rgba(57,255,20,.45);transition:width .25s}
+.infest-meter .msg{font-size:.62rem;color:#89c988;min-height:1.1rem}
+.swarm-layer{position:fixed;inset:0;pointer-events:none;z-index:10000;overflow:hidden}
+.swarm-bug{position:fixed;font-size:1.15rem;animation:swarmFly 3.8s linear forwards;filter:drop-shadow(0 0 7px rgba(57,255,20,.45))}
+@keyframes swarmFly{0%{transform:translate(0,0) scale(.8);opacity:0}10%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.3);opacity:0}}
+.goo-drop{position:fixed;width:7px;height:12px;background:linear-gradient(180deg,#9dff89,#39FF14 60%,rgba(57,255,20,0));border-radius:5px 5px 9px 9px;pointer-events:none;z-index:10002;filter:drop-shadow(0 0 6px rgba(57,255,20,.55));animation:gooSlip .85s ease-out forwards}
+@keyframes gooSlip{0%{opacity:.95;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) scale(.6)}}
+body.domination-mode::before{opacity:.45}
+body.domination-mode .hero-title{text-shadow:0 0 16px #39FF14,0 0 34px #39FF14}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,5,.95);backdrop-filter:blur(8px);border-bottom:1px solid #1a1a1a;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:50px;transition:transform .3s}
@@ -163,6 +211,29 @@ em{color:var(--dim)}
 .uc .terrains{font-size:.65rem;color:var(--muted);margin:.3rem 0;font-family:'Oswald',sans-serif;letter-spacing:1px}
 .uc .passive{font-size:.7rem;color:var(--dim);font-style:italic;margin-top:.5rem;line-height:1.5;border-top:1px solid #111;padding-top:.5rem}
 
+
+
+/* CARD PREVIEW LAB */
+.card-preview{margin:1.4rem 0 1.6rem;background:linear-gradient(135deg,#0b0b0f,#0f0f18);border:1px solid #24242e;padding:1rem;display:grid;grid-template-columns:330px 1fr;gap:1rem;position:relative;overflow:hidden}
+.card-preview::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 15% 12%,rgba(103,248,255,.08),transparent 40%),radial-gradient(circle at 92% 88%,rgba(255,45,107,.06),transparent 36%);pointer-events:none}
+.card-preview .pv-art{position:relative;border:1px solid #2a2a34;background:#08090d;padding:.7rem;z-index:2}
+.card-preview .pv-meta{position:relative;z-index:2}
+.pv-top{display:flex;justify-content:space-between;gap:.8rem;align-items:flex-start}
+.pv-name{font-family:'Bangers',cursive;font-size:2rem;letter-spacing:2px;line-height:1;color:var(--text)}
+.pv-sub{font-size:.72rem;color:var(--dim);letter-spacing:1px;margin-top:.25rem;text-transform:uppercase}
+.pv-cost{font-family:'Press Start 2P',monospace;font-size:.5rem;border:1px solid #333;padding:.45rem .55rem;color:var(--g)}
+.pv-stats{display:grid;grid-template-columns:repeat(5,minmax(70px,1fr));gap:.45rem;margin:.75rem 0}
+.pv-chip{background:#0d0d12;border:1px solid #2a2a2f;padding:.35rem .45rem}
+.pv-chip .k{font-size:.55rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.pv-chip .v{font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:1px}
+.pv-passive{margin-top:.4rem;padding:.65rem .75rem;border:1px solid #2a2a33;background:rgba(255,255,255,.02);font-size:.75rem;color:var(--text)}
+.pv-terrain{font-size:.72rem;color:var(--dim)}
+.pv-help{margin-top:.5rem;font-size:.65rem;color:var(--muted)}
+.uc{cursor:pointer}
+.uc:focus-visible{outline:2px solid var(--acid);outline-offset:2px}
+.uc.selected{border-color:var(--acid)!important;box-shadow:0 0 0 1px var(--acid),0 0 18px rgba(103,248,255,.18)}
+@media(max-width:980px){.card-preview{grid-template-columns:1fr}.pv-stats{grid-template-columns:repeat(3,1fr)}}
+
 /* FACTION COLORS ON CARDS */
 [data-fc="ants"] .uc-top{background:linear-gradient(90deg,var(--ant),var(--ant2))}
 [data-fc="ants"] .uc .uname{color:var(--ant)}
@@ -261,9 +332,40 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
 .cycle-phase .cicon{font-size:1.5rem;margin-bottom:.3rem}
 .cycle-phase .cname{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:2px;text-transform:uppercase}
 .cycle-phase .cronda{font-family:'Press Start 2P',monospace;font-size:.3rem;color:var(--dim);margin-top:.2rem}
+
+/* INTERACTIVE RULE LAB */
+.lab-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:1rem;margin-top:1rem}
+@media(max-width:900px){.lab-grid{grid-template-columns:1fr}}
+.lab-controls{background:#090909;border:1px solid #1f1f1f;padding:1rem}
+.lab-controls h5{font-family:'Press Start 2P',monospace;font-size:.44rem;letter-spacing:1px;color:var(--acid);margin-bottom:.8rem}
+.ctrl{display:grid;grid-template-columns:1fr auto;gap:.8rem;align-items:center;margin:.45rem 0}
+.ctrl label{font-size:.72rem;color:var(--dim)}
+.ctrl output,.ctrl span{font-family:'Oswald',sans-serif;font-size:.85rem;color:var(--text)}
+.ctrl input[type='range']{width:100%}
+.ctrl select,.ctrl input[type='number']{background:#121212;border:1px solid #2c2c2c;color:var(--text);padding:.25rem .35rem}
+.ctrl .tog{display:flex;align-items:center;gap:.45rem;justify-self:end}
+.lab-note{font-size:.68rem;color:var(--muted);margin-top:.7rem}
+.lab-state{margin-top:.85rem;padding:.65rem .8rem;border:1px solid #2a2a2a;background:rgba(255,255,255,.02);font-size:.72rem}
+.lab-state.ok{border-color:rgba(57,255,20,.35);color:var(--g)}
+.lab-state.bad{border-color:rgba(255,45,107,.35);color:var(--p)}
+.real-svg{background:#070707;border:1px solid #1a1a1a;padding:.6rem}
+.real-svg text{font-family:'Oswald',sans-serif}
+
 </style>
 </head>
 <body>
+<a class="skip-link" href="#lore">Saltar al contenido</a>
+<div class="spray-layer" aria-hidden="true">
+  <span class="spray s1"></span>
+  <span class="spray s2"></span>
+  <span class="spray s3"></span>
+</div>
+<div class="swarm-layer" id="swarmLayer" aria-hidden="true"></div>
+<div class="infest-meter" id="infestMeter" aria-live="polite">
+  <div class="ttl">INFESTACIÓN GLOBAL</div>
+  <div class="bar"><div class="fill" id="infestFill"></div></div>
+  <div class="msg" id="infestMsg">Fase larvaria del golpe.</div>
+</div>
 
 <nav>
   <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">BUGZ</div>
@@ -287,6 +389,28 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
     <span>45-75 MIN</span>
     <span>4 BANDAS</span>
     <span>32 BICHOS</span>
+  </div>
+  <div class="hero-stickers">
+    <span class="sticker pink">No Gods No Fogger</span>
+    <span class="sticker cyan">Neon Alley Meta</span>
+    <span class="sticker green">Mandíbulas First</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#rules">Entrar al manual</a>
+    <a href="#factions">Ver bandas</a>
+  </div>
+  <div class="graffiti-marquee" aria-hidden="true">
+    <div class="track">
+      <span>Y2K · PIXEL RUIDO · GRAFFITI QUITINOSO · CALLEJÓN TÓXICO ·</span>
+      <span>Y2K · PIXEL RUIDO · GRAFFITI QUITINOSO · CALLEJÓN TÓXICO ·</span>
+      <span>Y2K · PIXEL RUIDO · GRAFFITI QUITINOSO · CALLEJÓN TÓXICO ·</span>
+    </div>
+  </div>
+  <div class="dom-panel">
+    <span class="dom-pill">Dominación: Patio 74%</span>
+    <span class="dom-pill">Nidos activos: 12</span>
+    <span class="dom-pill">Gigantes expulsados: 3</span>
+    <button class="swarm-btn" id="swarmBtn" type="button">Liberar enjambre</button>
   </div>
   <div class="hero-scroll" style="font-family:'Press Start 2P',monospace;font-size:.35rem;letter-spacing:3px">▼ SCROLL ▼</div>
 </div>
@@ -600,6 +724,63 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
     <div class="callout">Las Hormigas dominan Sol. Los Escarabajos y Gusanos explotan Luna. Las Mantis tienen la distribución más equilibrada. Las rondas neutras son de posicionamiento puro.</div>
   </div>
 
+
+  <!-- REGLA REAL INTERACTIVA -->
+  <div class="rule-block" id="rule-lab">
+    <h4>Laboratorio táctico (interactivo)</h4>
+    <p>Este panel traduce reglas reales de BUGZ: coste de terreno para mover, alcance de escupitajo y bloqueo por Enganche.</p>
+    <div class="lab-grid">
+      <div class="lab-controls">
+        <h5>Movimiento</h5>
+        <div class="ctrl"><label for="patRange">Patas disponibles (PAT)</label><output id="patOut">3</output></div>
+        <div class="ctrl"><input id="patRange" type="range" min="1" max="6" value="3"><span></span></div>
+        <div class="ctrl"><label for="path1">Hex 1 coste</label><select id="path1"><option value="1">1</option><option value="2">2</option><option value="99">Bloqueado</option></select></div>
+        <div class="ctrl"><label for="path2">Hex 2 coste</label><select id="path2"><option value="1">1</option><option value="2" selected>2</option><option value="99">Bloqueado</option></select></div>
+        <div class="ctrl"><label for="path3">Hex 3 coste</label><select id="path3"><option value="1" selected>1</option><option value="2">2</option><option value="99">Bloqueado</option></select></div>
+
+        <h5 style="margin-top:1rem">Escupitajo + Enganche</h5>
+        <div class="ctrl"><label for="rangeDist">Distancia al objetivo</label><output id="rangeOut">3</output></div>
+        <div class="ctrl"><input id="rangeDist" type="range" min="1" max="5" value="3"><span></span></div>
+        <div class="ctrl"><label for="adjEnemy">Hay enemigo adyacente</label><div class="tog"><input id="adjEnemy" type="checkbox"></div></div>
+        <div class="ctrl"><label for="isSentinel">Unidad con Antena Larga (Centinela)</label><div class="tog"><input id="isSentinel" type="checkbox"></div></div>
+
+        <div id="labState" class="lab-state">Calculando estado táctico...</div>
+        <p class="lab-note">Regla aplicada: sin Antena Larga, estar adyacente a enemigo bloquea Escupitajo incluso si el rango llega.</p>
+      </div>
+      <div class="real-svg">
+        <svg id="labSvg" viewBox="0 0 360 280" width="100%" role="img" aria-label="Simulador visual de movimiento y ataque">
+          <rect x="0" y="0" width="360" height="280" fill="#070707"/>
+          <text x="16" y="20" fill="#777" font-size="10" letter-spacing="2">MOVIMIENTO REAL (coste acumulado)</text>
+
+          <polygon id="hx0" points="34,92 60,76 86,92 86,120 60,136 34,120" fill="#121212" stroke="#555"/>
+          <text x="60" y="111" fill="#e0ddd0" font-size="12" text-anchor="middle">🐜</text>
+
+          <polygon id="hx1" points="94,92 120,76 146,92 146,120 120,136 94,120" fill="#101010" stroke="#333"/>
+          <text id="hx1t" x="120" y="111" fill="#777" font-size="10" text-anchor="middle">1</text>
+
+          <polygon id="hx2" points="154,92 180,76 206,92 206,120 180,136 154,120" fill="#101010" stroke="#333"/>
+          <text id="hx2t" x="180" y="111" fill="#777" font-size="10" text-anchor="middle">2</text>
+
+          <polygon id="hx3" points="214,92 240,76 266,92 266,120 240,136 214,120" fill="#101010" stroke="#333"/>
+          <text id="hx3t" x="240" y="111" fill="#777" font-size="10" text-anchor="middle">1</text>
+
+          <line id="moveL1" x1="87" y1="106" x2="94" y2="106" stroke="#39FF14" stroke-width="2"/>
+          <line id="moveL2" x1="147" y1="106" x2="154" y2="106" stroke="#39FF14" stroke-width="2"/>
+          <line id="moveL3" x1="207" y1="106" x2="214" y2="106" stroke="#39FF14" stroke-width="2"/>
+          <text id="moveText" x="16" y="160" fill="#39FF14" font-size="11">Ruta legal</text>
+
+          <text x="16" y="192" fill="#777" font-size="10" letter-spacing="2">ESCUPITAJO REAL (bloqueo por Enganche)</text>
+          <circle cx="76" cy="236" r="20" fill="rgba(57,255,20,.08)" stroke="#39FF14"/>
+          <text x="76" y="242" fill="#39FF14" font-size="14" text-anchor="middle">🐜</text>
+          <circle id="target" cx="256" cy="236" r="18" fill="rgba(255,45,107,.08)" stroke="#FF2D6B"/>
+          <text x="256" y="242" fill="#FF2D6B" font-size="14" text-anchor="middle">🪱</text>
+          <line id="shotLine" x1="98" y1="236" x2="238" y2="236" stroke="#39FF14" stroke-width="2" stroke-dasharray="5"/>
+          <text id="shotText" x="16" y="266" fill="#39FF14" font-size="11">Disparo válido</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+
   <!-- MUDA -->
   <div class="rule-block">
     <h4>Muda (Ascenso)</h4>
@@ -739,6 +920,45 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
   <div class="section-label">03 · Las bandas</div>
   <h2>Cuatro <span class="pink drip">colonias</span>. Cero diplomacia.</h2>
   
+
+  <div class="card-preview" id="cardPreview">
+    <div class="pv-art">
+      <svg viewBox="0 0 280 260" width="100%" aria-label="Ilustración de unidad seleccionada">
+        <defs>
+          <radialGradient id="pvGlow" cx="50%" cy="40%" r="65%">
+            <stop id="pvGlowStop" offset="0%" stop-color="#67f8ff" stop-opacity=".35"/>
+            <stop offset="100%" stop-color="#67f8ff" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width="280" height="260" fill="#07080c"/>
+        <circle cx="140" cy="122" r="88" fill="url(#pvGlow)" id="pvAura"/>
+        <polygon id="pvRing" points="140,26 224,74 224,170 140,218 56,170 56,74" fill="rgba(255,255,255,.03)" stroke="#2b2f35"/>
+        <text id="pvEmoji" x="140" y="136" text-anchor="middle" font-size="72">🐜</text>
+        <text id="pvCycle" x="140" y="190" text-anchor="middle" font-size="18" fill="#a8a8a8">☀</text>
+        <text x="140" y="242" text-anchor="middle" font-size="10" fill="#6f6f79" letter-spacing="2">ILUSTRACIÓN TÁCTICA</text>
+      </svg>
+    </div>
+    <div class="pv-meta">
+      <div class="pv-top">
+        <div>
+          <div class="pv-name" id="pvName">Selecciona una carta</div>
+          <div class="pv-sub" id="pvSub">Haz click en una unidad para ver su ficha táctica</div>
+        </div>
+        <div class="pv-cost" id="pvCost">ORO —</div>
+      </div>
+      <div class="pv-stats">
+        <div class="pv-chip"><div class="k">QT</div><div class="v" id="pvQt">—</div></div>
+        <div class="pv-chip"><div class="k">PAT</div><div class="v" id="pvPat">—</div></div>
+        <div class="pv-chip"><div class="k">M</div><div class="v" id="pvM">—</div></div>
+        <div class="pv-chip"><div class="k">E</div><div class="v" id="pvE">—</div></div>
+        <div class="pv-chip"><div class="k">Muda</div><div class="v" id="pvMu">—</div></div>
+      </div>
+      <div class="pv-terrain" id="pvTerrain">Terrenos: —</div>
+      <div class="pv-passive" id="pvPassive">Pasiva: —</div>
+      <div class="pv-help">Tip: pulsa <strong>Tab + Enter</strong> sobre una carta para previsualizarla sin ratón.</div>
+    </div>
+  </div>
+
   <div class="faction-nav">
     <button class="ftab active" data-f="ants" onclick="sf('ants')">🐜 Hormigas</button>
     <button class="ftab" data-f="mantis" onclick="sf('mantis')">🦗 Mantis</button>
@@ -972,7 +1192,7 @@ worms: {
 }};
 
 // ═══ RENDER CARDS ═══
-function renderCard(u) {
+function renderCard(u,f,t) {
   const sts = [];
   if(u.o) sts.push(`ORO ${u.o}`);
   sts.push(`QT ${u.qt}`, `PAT ${u.pat}`);
@@ -980,14 +1200,56 @@ function renderCard(u) {
   else if(u.m) sts.push(`M${u.m}`);
   else if(u.e) sts.push(`E${u.e}`);
   if(u.mu) sts.push(`MUDA ${u.mu}`);
-  return `<div class="uc"><div class="uc-glow"></div><div class="uc-top"></div><div class="uc-body"><span class="cycle">${u.c}</span><div class="uname">${u.n}</div><div class="stats">${sts.map(s=>`<span class="stat">${s}</span>`).join('')}</div><div class="terrains">${u.te}</div><div class="passive">${u.p}</div></div></div>`;
+  const side={ants:'🐜',mantis:'🦗',beetles:'🪲',worms:'🪱'}[f]||'🐛';
+  return `<div class="uc" tabindex="0" role="button" aria-label="Previsualizar ${u.n}" data-f="${f}" data-t="${t}" data-n="${u.n}" data-o="${u.o||''}" data-qt="${u.qt}" data-pat="${u.pat}" data-m="${u.m||0}" data-e="${u.e||0}" data-mu="${u.mu||'-'}" data-te="${u.te}" data-p="${u.p}" data-c="${u.c||'◈'}" data-icon="${side}"><div class="uc-glow"></div><div class="uc-top"></div><div class="uc-body"><span class="cycle">${u.c}</span><div class="uname">${u.n}</div><div class="stats">${sts.map(s=>`<span class="stat">${s}</span>`).join('')}</div><div class="terrains">${u.te}</div><div class="passive">${u.p}</div></div></div>`;
 }
 Object.keys(D).forEach(f => {
   ['t1','t2','t3'].forEach(t => {
     const el = document.getElementById(`${f}-${t}`);
-    if(el && D[f][t]) el.innerHTML = D[f][t].map(renderCard).join('');
+    if(el && D[f][t]) el.innerHTML = D[f][t].map(u=>renderCard(u,f,t)).join('');
   });
 });
+
+
+
+function updatePreview(card){
+  if(!card) return;
+  document.querySelectorAll('.uc.selected').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  const d=card.dataset;
+  const factionNames={ants:'Colonia Roja',mantis:'Sindicato Verde',beetles:'Blindados',worms:'Plaga'};
+  const tierNames={t1:'Forma I',t2:'Forma II',t3:'Forma Alfa'};
+  document.getElementById('pvName').textContent=d.n;
+  document.getElementById('pvSub').textContent=`${factionNames[d.f]||d.f} · ${tierNames[d.t]||d.t} · Ciclo ${d.c}`;
+  document.getElementById('pvCost').textContent=`ORO ${d.o||'—'}`;
+  document.getElementById('pvQt').textContent=d.qt;
+  document.getElementById('pvPat').textContent=d.pat;
+  document.getElementById('pvM').textContent=d.m;
+  document.getElementById('pvE').textContent=d.e;
+  document.getElementById('pvMu').textContent=d.mu;
+  document.getElementById('pvTerrain').textContent=`Terrenos: ${d.te}`;
+  document.getElementById('pvPassive').textContent=`Pasiva: ${d.p}`;
+  document.getElementById('pvEmoji').textContent=d.icon||'🐛';
+  document.getElementById('pvCycle').textContent=d.c||'◈';
+  const colorMap={ants:'#FF4422',mantis:'#39FF14',beetles:'#BB44FF',worms:'#C8E600'};
+  const tone=colorMap[d.f]||'#67f8ff';
+  document.getElementById('pvGlowStop').setAttribute('stop-color',tone);
+  document.getElementById('pvRing').setAttribute('stroke',tone);
+  document.getElementById('pvCost').style.color=tone;
+}
+
+document.addEventListener('click',e=>{
+  const card=e.target.closest('.uc');
+  if(card) updatePreview(card);
+});
+document.addEventListener('keydown',e=>{
+  if((e.key==='Enter' || e.key===' ') && e.target.classList.contains('uc')){
+    e.preventDefault();
+    updatePreview(e.target);
+  }
+});
+const initialCard=document.querySelector('#fc-ants .uc');
+if(initialCard) updatePreview(initialCard);
 
 // ═══ FACTION TABS ═══
 function sf(id){
@@ -995,6 +1257,8 @@ function sf(id){
   document.querySelectorAll('.ftab').forEach(e=>e.classList.remove('active'));
   document.getElementById('fc-'+id).classList.add('active');
   document.querySelector(`.ftab[data-f="${id}"]`).classList.add('active');
+  const first=document.querySelector(`#fc-${id} .uc`);
+  if(first) updatePreview(first);
 }
 
 // ═══ HERO LINES ═══
@@ -1012,6 +1276,151 @@ for(let i=0;i<20;i++){
 // ═══ SCROLL REVEAL ═══
 const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})},{threshold:.08});
 document.querySelectorAll('.reveal').forEach(e=>obs.observe(e));
+
+
+
+// ═══ RULE LAB (REALIDAD JUGABLE) ═══
+const patRange=document.getElementById('patRange');
+const patOut=document.getElementById('patOut');
+const rangeDist=document.getElementById('rangeDist');
+const rangeOut=document.getElementById('rangeOut');
+const adjEnemy=document.getElementById('adjEnemy');
+const isSentinel=document.getElementById('isSentinel');
+const pathIds=['path1','path2','path3'];
+const hxIds=['hx1','hx2','hx3'];
+const lineIds=['moveL1','moveL2','moveL3'];
+
+function updateRuleLab(){
+  if(!patRange) return;
+  const pat=Number(patRange.value);
+  const dist=Number(rangeDist.value);
+  patOut.textContent=String(pat);
+  rangeOut.textContent=String(dist);
+
+  let spent=0;
+  let blocked=false;
+  pathIds.forEach((id,idx)=>{
+    const cost=Number(document.getElementById(id).value);
+    const hx=document.getElementById(hxIds[idx]);
+    const hxt=document.getElementById(hxIds[idx]+'t');
+    const line=document.getElementById(lineIds[idx]);
+    hxt.textContent=cost===99?'X':String(cost);
+
+    if(blocked || cost===99){
+      blocked=true;
+      hx.setAttribute('fill','rgba(255,45,107,.08)');
+      hx.setAttribute('stroke','#FF2D6B');
+      line.setAttribute('stroke','#FF2D6B');
+      return;
+    }
+
+    spent+=cost;
+    const legal=spent<=pat;
+    hx.setAttribute('fill', legal ? 'rgba(57,255,20,.07)' : 'rgba(255,45,107,.08)');
+    hx.setAttribute('stroke', legal ? '#39FF14' : '#FF2D6B');
+    line.setAttribute('stroke', legal ? '#39FF14' : '#FF2D6B');
+  });
+
+  const moveLegal=!blocked && spent<=pat;
+  const moveText=document.getElementById('moveText');
+  moveText.textContent=moveLegal?`Ruta legal: coste ${spent}/${pat}`:`Ruta ilegal: coste ${spent}/${pat}${blocked?' + hex bloqueado':''}`;
+  moveText.setAttribute('fill',moveLegal?'#39FF14':'#FF2D6B');
+
+  // Alcance jugable: base 3, bloqueado por adyacencia salvo Centinela
+  const canRangeByDist=dist<=3;
+  const blockedByEngage=adjEnemy.checked && !isSentinel.checked;
+  const shotOK=canRangeByDist && !blockedByEngage;
+  const x2=98+Math.min(dist,5)*46;
+  const line=document.getElementById('shotLine');
+  line.setAttribute('x2',String(x2));
+  const target=document.getElementById('target');
+  target.setAttribute('cx',String(x2+18));
+
+  const shotText=document.getElementById('shotText');
+  if(shotOK){
+    shotText.textContent='Disparo válido por reglas actuales';
+    shotText.setAttribute('fill','#39FF14');
+    line.setAttribute('stroke','#39FF14');
+  }else{
+    const why=blockedByEngage?'bloqueado por Enganche':'fuera de alcance (3)';
+    shotText.textContent=`Disparo ilegal: ${why}`;
+    shotText.setAttribute('fill','#FF2D6B');
+    line.setAttribute('stroke','#FF2D6B');
+  }
+
+  const labState=document.getElementById('labState');
+  labState.className='lab-state '+(moveLegal && shotOK ? 'ok':'bad');
+  labState.textContent=`Movimiento: ${moveLegal?'legal':'ilegal'} · Escupitajo: ${shotOK?'legal':'ilegal'}${adjEnemy.checked ? ' · enemigo adyacente detectado' : ''}${isSentinel.checked ? ' · excepción Centinela activa' : ''}`;
+}
+
+['input','change'].forEach(evt=>{
+  [patRange,rangeDist,adjEnemy,isSentinel,...pathIds.map(id=>document.getElementById(id))].forEach(el=>el&&el.addEventListener(evt,updateRuleLab));
+});
+updateRuleLab();
+
+
+// ═══ BUG DOMINATION FX ═══
+const swarmLayer=document.getElementById('swarmLayer');
+const swarmBtn=document.getElementById('swarmBtn');
+const infestFill=document.getElementById('infestFill');
+const infestMsg=document.getElementById('infestMsg');
+const infestLines=[
+  'Las migajas ya pagan impuesto.',
+  'El callejón huele a feromonas.',
+  'Los gigantes retroceden.',
+  'La Reina exige más terreno.',
+  'La plaga canta victoria.'
+];
+function updateInfestation(){
+  const max=document.documentElement.scrollHeight-window.innerHeight;
+  const pct=max>0?Math.min(100,Math.round((window.scrollY/max)*100)):0;
+  infestFill.style.width=pct+'%';
+  infestMsg.textContent=infestLines[Math.min(infestLines.length-1,Math.floor(pct/20))];
+}
+window.addEventListener('scroll',updateInfestation,{passive:true});
+updateInfestation();
+
+function spawnSwarm(count=26){
+  const bugs=['🐜','🪲','🪱','🦗'];
+  for(let i=0;i<count;i++){
+    const b=document.createElement('span');
+    b.className='swarm-bug';
+    b.textContent=bugs[Math.floor(Math.random()*bugs.length)];
+    b.style.left=Math.random()*100+'vw';
+    b.style.top=(65+Math.random()*25)+'vh';
+    b.style.setProperty('--dx',`${(Math.random()*2-1)*260}px`);
+    b.style.setProperty('--dy',`${-260-Math.random()*340}px`);
+    b.style.animationDuration=`${2.6+Math.random()*1.8}s`;
+    swarmLayer.appendChild(b);
+    setTimeout(()=>b.remove(),4500);
+  }
+}
+if(swarmBtn){
+  swarmBtn.addEventListener('click',()=>{
+    document.body.classList.toggle('domination-mode');
+    spawnSwarm(34);
+  });
+}
+
+// ═══ CURSOR SPARKS ═══
+const sparks=[];
+window.addEventListener('pointermove',(e)=>{
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const s=document.createElement('span');
+  s.style.position='fixed';
+  s.style.left=e.clientX+'px';
+  s.style.top=e.clientY+'px';
+  s.className='goo-drop';
+  s.style.setProperty('--sx',`${(Math.random()*18-9).toFixed(1)}px`);
+  s.style.setProperty('--sy',`${(Math.random()*24+10).toFixed(1)}px`);
+  s.style.width=`${5+Math.random()*4}px`;
+  s.style.height=`${9+Math.random()*8}px`;
+  s.style.pointerEvents='none';
+  document.body.appendChild(s);
+  sparks.push(s);
+  setTimeout(()=>s.remove(),900);
+  if(sparks.length>30){sparks.shift()?.remove();}
+});
 
 // ═══ NAV HIDE ═══
 let ls=0;
