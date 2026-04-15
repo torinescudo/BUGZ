@@ -16,9 +16,12 @@
   --bee:#BB44FF;--bee2:#DD88FF;
   --wrm:#CCFF00;--wrm2:#88AA00;
   --acid:#67f8ff;--spray:#ff5cd4;--ink:#161221;
+  --panel:#0d0f14;--panel2:#11151c;--line:#2a2f38;--line2:#3a4452;
+  --r:10px;--shadow:0 10px 28px rgba(0,0,0,.32);
+  --fz-body:14px;--fz-small:12px;
 }
 html{scroll-behavior:smooth}
-body{background:radial-gradient(circle at 20% 10%,#17121f 0,#08070f 30%,#050505 70%);color:var(--text);font-family:'Space Mono',monospace;font-size:13px;line-height:1.7;overflow-x:hidden;cursor:crosshair}
+body{background:radial-gradient(circle at 20% 10%,#17121f 0,#08070f 30%,#050505 70%);color:var(--text);font-family:'Space Mono',monospace;font-size:var(--fz-body);line-height:1.7;overflow-x:hidden;cursor:crosshair}
 ::selection{background:var(--p);color:#000}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:#000}
@@ -93,7 +96,7 @@ section::before{content:'';position:absolute;inset:0;border:1px solid rgba(255,2
 .infest-meter .ttl{font-family:'Press Start 2P',monospace;font-size:.38rem;color:#a6ff9c;letter-spacing:1px}
 .infest-meter .bar{height:9px;border:1px solid #2f4a30;background:#090f09;margin:.45rem 0;overflow:hidden}
 .infest-meter .fill{height:100%;width:0%;background:linear-gradient(90deg,#39FF14,#94ff39);box-shadow:0 0 10px rgba(57,255,20,.45);transition:width .25s}
-.infest-meter .msg{font-size:.62rem;color:#89c988;min-height:1.1rem}
+.infest-meter .msg{font-size:.7rem;color:#9ed89b;min-height:1.2rem}
 .swarm-layer{position:fixed;inset:0;pointer-events:none;z-index:10000;overflow:hidden}
 .swarm-bug{position:fixed;font-size:1.15rem;animation:swarmFly 3.8s linear forwards;filter:drop-shadow(0 0 7px rgba(57,255,20,.45))}
 @keyframes swarmFly{0%{transform:translate(0,0) scale(.8);opacity:0}10%{opacity:1}100%{transform:translate(var(--dx),var(--dy)) scale(1.3);opacity:0}}
@@ -101,6 +104,23 @@ section::before{content:'';position:absolute;inset:0;border:1px solid rgba(255,2
 @keyframes gooSlip{0%{opacity:.95;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(calc(-50% + var(--sx)),calc(-50% + var(--sy))) scale(.6)}}
 body.domination-mode::before{opacity:.45}
 body.domination-mode .hero-title{text-shadow:0 0 16px #39FF14,0 0 34px #39FF14}
+
+
+/* IDENTITY + HIERARCHY SYSTEM */
+section{padding:5.2rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{font-size:.58rem;letter-spacing:3px;opacity:.92}
+h2{font-size:clamp(2.6rem,6.4vw,4.2rem);letter-spacing:3px}
+h3{font-size:1.15rem;letter-spacing:2px}
+p, .rule-block p, .lore-block p{font-size:.88rem;line-height:1.75}
+nav .links a{font-size:.56rem}
+.panel-core{background:linear-gradient(165deg,var(--panel),var(--panel2));border:1px solid var(--line);box-shadow:var(--shadow);border-radius:var(--r)}
+.rule-block,.card-preview,.dom-panel,.infest-meter,.fh,.lore-block,.tc,.queen-card,.uc{background:linear-gradient(165deg,var(--panel),#0a0c11)}
+.rule-block,.card-preview,.fh,.lore-block,.tc,.queen-card,.uc,.infest-meter{border-color:var(--line)}
+.rule-block::after,.card-preview::after,.fh::after{content:'';position:absolute;right:10px;top:10px;width:52px;height:2px;background:linear-gradient(90deg,var(--acid),transparent);opacity:.65}
+.manifesto-strip{max-width:1100px;margin:0 auto;border:1px solid var(--line2);padding:.95rem 1rem;background:linear-gradient(90deg,rgba(255,45,107,.08),rgba(57,255,20,.08));display:flex;gap:.7rem;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.manifesto-strip .m-title{font-family:'Bangers',cursive;font-size:1.35rem;letter-spacing:1px;color:var(--text)}
+.manifesto-strip .m-copy{font-size:.78rem;color:#bcc4d0;max-width:760px}
+.manifesto-strip .m-tag{font-family:'Press Start 2P',monospace;font-size:.42rem;border:1px solid #3a4a5e;padding:.35rem .45rem;color:var(--acid)}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,5,.95);backdrop-filter:blur(8px);border-bottom:1px solid #1a1a1a;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:50px;transition:transform .3s}
@@ -133,12 +153,12 @@ nav .links a:hover{color:var(--g);border-color:var(--g);box-shadow:0 0 10px rgba
 .hazard{height:4px;background:repeating-linear-gradient(45deg,var(--y),var(--y) 10px,#000 10px,#000 20px);margin:0;opacity:.6}
 
 /* SECTIONS */
-section{padding:5rem 2rem;max-width:1100px;margin:0 auto}
-.section-label{font-family:'Press Start 2P',monospace;font-size:.5rem;letter-spacing:4px;text-transform:uppercase;color:var(--g);margin-bottom:.5rem;text-shadow:0 0 10px rgba(57,255,20,.3)}
-h2{font-family:'Bangers',cursive;font-size:clamp(2.5rem,6vw,4rem);letter-spacing:4px;margin-bottom:1.5rem;line-height:1.1;position:relative;display:inline-block}
+section{padding:5.2rem 2rem;max-width:1100px;margin:0 auto}
+.section-label{font-family:'Press Start 2P',monospace;font-size:.58rem;letter-spacing:3px;text-transform:uppercase;color:var(--g);margin-bottom:.55rem;text-shadow:0 0 10px rgba(57,255,20,.3)}
+h2{font-family:'Bangers',cursive;font-size:clamp(2.6rem,6.4vw,4.2rem);letter-spacing:3px;margin-bottom:1.5rem;line-height:1.1;position:relative;display:inline-block}
 h2 .drip{position:relative}
 h2 .drip::after{content:'';position:absolute;bottom:-2px;left:20%;width:3px;background:currentColor;border-radius:0 0 3px 3px;animation:drip 3s infinite;opacity:.5}
-h3{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin:2.5rem 0 1rem;color:var(--text);border-left:3px solid var(--g);padding-left:1rem}
+h3{font-family:'Oswald',sans-serif;font-size:1.15rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin:2.5rem 0 1rem;color:var(--text);border-left:3px solid var(--g);padding-left:1rem}
 p+p{margin-top:.8rem}
 strong{color:var(--text);font-weight:700}
 em{color:var(--dim)}
@@ -434,6 +454,11 @@ footer .kill{font-family:'Creepster',cursive;font-size:1.2rem;color:var(--p);mar
     <button class="swarm-btn" id="swarmBtn" type="button">Liberar enjambre</button>
   </div>
   <div class="hero-scroll" style="font-family:'Press Start 2P',monospace;font-size:.35rem;letter-spacing:3px">▼ SCROLL ▼</div>
+</div>
+<div class="manifesto-strip">
+  <div class="m-title">BUGZ RULES THE BLOCK</div>
+  <div class="m-copy">Una identidad gamberra con disciplina visual: más calle, más tensión táctica, menos ruido gratuito. Cada módulo debe gritar dominación sin romper la lectura.</div>
+  <span class="m-tag">ESTÉTICA: TRANSGRESORA + FINA</span>
 </div>
 <div class="hazard"></div>
 
